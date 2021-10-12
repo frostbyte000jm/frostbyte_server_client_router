@@ -15,8 +15,8 @@ public class ServerNames {
     private static String textFile = "C:\\Temp\\file.txt";
     private static String textFileServer = "C:\\Temp\\file_server.txt";
     private static String textFileClient = "C:\\Temp\\file_client.txt";
-    private static String vidFile = "C:\\Temp\\drop.avi";
-    private static String vidFileServer = "C:\\Temp\\drop_server.avi";
+    private static String vidFile = "C:\\Temp\\video3.avi";   //drop.avi";
+    private static String vidFileServer = "C:\\Temp\\video_server3.avi";    //drop_server.avi";
     private static int portNum = 5555;
 
 

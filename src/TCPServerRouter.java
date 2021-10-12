@@ -33,7 +33,7 @@ public class TCPServerRouter {
         //Run
         while (doRunning){
             try{
-                System.out.println("waiting for accept.");
+                System.out.println("Waiting for Connection...");
                 clientSocket = serverSocket.accept();
                 System.out.println("Accepted, sending to Thread.");
                 ServerRouterThread serverRouterThread = new ServerRouterThread(clientSocket,index);

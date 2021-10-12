@@ -28,10 +28,9 @@ public class ServerRouterThread extends Thread {
 
     public void run(){
         //identify
-
         try {
             outIpAddress = dataInputStream.readUTF();
-            System.out.println("Forwarding to :"+(String) outIpAddress);
+            System.out.println("Connection From:"+(String) outIpAddress);
             dataOutputStream.writeUTF("Connected to Router.");
         } catch(IOException ie){
             System.out.println("Thread interrupted");
@@ -39,7 +38,7 @@ public class ServerRouterThread extends Thread {
 
         //Pause while this updates with machine info
         try{
-            Thread.currentThread().sleep(10000);
+            Thread.currentThread().sleep(5000);
         }
         catch(InterruptedException ie){
             System.out.println("Thread interrupted");
