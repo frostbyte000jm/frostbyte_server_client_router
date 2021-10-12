@@ -1,8 +1,8 @@
 package classes;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import staticLoc.ServerNames;
+
+import java.io.*;
 import java.net.Socket;
 
 public class ServerRouterThread extends Thread {
@@ -13,6 +13,7 @@ public class ServerRouterThread extends Thread {
     private DataOutputStream dataOutputStream = null;
     private String outIpAddress;
     private Socket outSocket;
+    private Boolean doRunning;
 
 
     //constructor
@@ -22,6 +23,7 @@ public class ServerRouterThread extends Thread {
         routingTable[index][1] = inSocket;
         dataInputStream = new DataInputStream(inSocket.getInputStream());
         dataOutputStream = new DataOutputStream(inSocket.getOutputStream());
+        doRunning = true;
     }
 
     public void run(){
@@ -53,20 +55,42 @@ public class ServerRouterThread extends Thread {
                 } catch (IOException e) {
                     System.out.println("Unable to load desitnation ["+outIpAddress+"] to output.");
                 }
+                break;
             }
         }
 
         // Communication Loop
-        int length = 0;
-        while (true) {
-            try {
-                if ((length = dataInputStream.readInt()) > 0)
-                    break;
-                else
-                    break;
-            } catch (IOException e) {
-                System.out.println("Router unable to read file from Server / Router");
-            }
+        try {
+            System.out.println("letting Cilent Server know it is ready to transfer.");
+            dataOutputStream.writeUTF("Ready to Receive File.");
+            System.out.println("Server/Router is receiving file information.");
+            int fileNameLength = dataInputStream.readInt();
+            byte [] fileNameBytes = new byte[fileNameLength];
+            dataInputStream.readFully(fileNameBytes,0,fileNameBytes.length);
+            String fileName = new String(fileNameBytes);
+            System.out.println("Server/Router received the File Name: "+fileName);
+            System.out.println("Server/Router is receiving File Data.");
+            int fileLength = dataInputStream.readInt();
+            byte [] fileBytes = new byte[fileLength];
+            dataInputStream.readFully(fileBytes,0,fileBytes.length);
+            System.out.println("Server/Router Received File data for "+fileName);
+
+            dataOutputStream.writeUTF("File Received.");
+
+            System.out.println("Sending the bytes of File Name.");
+            dataOutputStream.writeInt(fileNameBytes.length); // send length of file name to Router
+            dataOutputStream.write(fileNameBytes); // send whole file name to server
+
+            System.out.println("Sending the bytes of File.");
+            dataOutputStream.writeInt(fileBytes.length); // send length of file to Router
+            dataOutputStream.write(fileBytes); //send whole file to Router
+
+            String confirmReceived = dataInputStream.readUTF();
+            System.out.println("Client Says: "+ confirmReceived);
+
+        } catch (IOException e) {
+            System.out.println("Unable to read in file.");
         }
+
     }
 }

@@ -17,7 +17,9 @@ public class ServerNames_Copy {
     private static String clientAddress = "192.168.1.1";
     private static String tempDir = "C:\\Temp";
     private static String textFile = "C:\\Temp\\file.txt";
+    private static String textFileServer = "C:\\Temp\\file_server.txt";
     private static String vidFile = "C:\\Temp\\drop.avi";
+    private static String vidFileServer = "C:\\Temp\\drop_server.avi";
     private static int portNum = 5555;
 
 
@@ -41,9 +43,13 @@ public class ServerNames_Copy {
         return textFile;
     }
 
-    public static String getVidFile() {
-        return vidFile;
+    public static String getTextFileServer() {
+        return textFileServer;
     }
+
+    public static String getVidFile() { return vidFile; }
+
+    public static String getVidFileServer() { return vidFileServer; }
 
     public static int getPortNum() {
         return portNum;
