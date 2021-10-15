@@ -22,5 +22,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Server Names
-/src/staticLoc/ServerNames.java
+# setting files
+/src/staticLoc/settingsForClient.java
+/src/staticLoc/settingsForRouter.java
+/src/staticLoc/settingsForServer.java
+
+# Too Large video files. You will need to download these off of One Drive
+/src/data/video_lg.avi
+/src/data/video_med.mp4
