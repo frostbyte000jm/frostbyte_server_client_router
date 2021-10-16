@@ -17,6 +17,7 @@ public class TCPClient {
         //declarations
         scanner = new Scanner(System.in);
         doRun = true;
+
         // Who am I
         try{
             InetAddress addr = InetAddress.getLocalHost();
@@ -96,14 +97,15 @@ public class TCPClient {
         System.out.print(">> ");
         String msg = scanner.nextLine();
         dataOutputStream.writeUTF(msg);
-
     }
+
     private static void displayMessage() throws IOException {
         // Routine for displaying a message
         dataOutputStream.writeUTF("ready");
         String message = dataInputStream.readUTF();
         System.out.println(message);
     }
+
     private static void sendFile() throws IOException {
         //declaration
         long timeDisplay;
@@ -156,6 +158,8 @@ public class TCPClient {
         long timeSentEnd = System.currentTimeMillis();
         timeDisplay = timeSentEnd - timeSentStart;
         System.out.println("Time to send File: "+timeDisplay);
+        timeDisplay = timeSentEnd - timeStart;
+        System.out.println("Total time to send File: "+ timeDisplay);
     }
 
     private static void receiveFile() throws IOException {
