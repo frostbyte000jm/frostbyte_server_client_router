@@ -175,6 +175,4 @@ public class RouterThread extends Thread{
         msgClient = dataInputStreamClient.readUTF();
         dataOutputStreamServer.writeUTF(msgClient);
     }
-
-
 }
