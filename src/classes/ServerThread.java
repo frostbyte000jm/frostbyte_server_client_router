@@ -144,7 +144,7 @@ public class ServerThread extends Thread {
 
         // Create File
         String directory = makeServerDirectory();
-        File file = new File(directory+"\\"+fileName);
+        File file = new File(directory+File.separator+fileName);
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(fileBytes);
         fileOutputStream.close();
@@ -326,7 +326,7 @@ public class ServerThread extends Thread {
         String fileNameRevised = file.getName();
         fileNameRevised = fileNameRevised.replace(".txt","_upper.txt");
         String directory = makeServerDirectory();
-        File fileRevised = new File(directory+"\\"+fileNameRevised);
+        File fileRevised = new File(directory+File.separator+fileNameRevised);
 
         //Create Buffer and Printer
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));

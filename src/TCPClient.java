@@ -212,7 +212,7 @@ public class TCPClient {
         String fileName = new String(fileNameBytes);
 
         // Create File
-        File file = new File(directory+"\\"+fileName);
+        File file = new File(directory+File.separator+fileName);
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         fileOutputStream.write(fileBytes);
         fileOutputStream.close();
